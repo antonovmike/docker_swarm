@@ -14,9 +14,9 @@ fn main() {
             .into_iter()
             .take_while(|&x| x != 0)
             .collect::<Vec<_>>();
-        let serde_message = String::from_utf8(serde_content).expect("Invalid utf8 message");
+        let serde_data = String::from_utf8(serde_content).expect("Invalid utf8 message");
 
-        setings.insert(iroha_iter, serde_message);
+        setings.insert(iroha_iter, serde_data);
     }
     for (key, value) in &setings {
         println!("{}: \n{}", key, value);
