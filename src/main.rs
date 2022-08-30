@@ -11,7 +11,7 @@ fn main() {
         setings.insert(iroha_iter, value_maker(i));
     }
     for (key, value) in &setings {
-        println!("{}: {}", key, value);
+        println!("{}: \n{}", key, value);
     }
 }
 
