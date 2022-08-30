@@ -1,5 +1,3 @@
-use serde_yaml::Value;
-
 use crate::structures::IrohaIterated;
 use std::collections::HashMap;
 
@@ -7,11 +5,9 @@ mod structures;
 
 fn main() {
     let mut setings = HashMap::new();
-    // let mut setings = BTreeMap::new();
 
     for i in 0..4 {
         let iroha_iter = format!("iroha{}", i.to_string());
-        // let value: serde_yaml::Value = serde_yaml::from_value(value_maker()).unwrap();
         
         let value: Vec<u8> = value_maker();
         let serde_content = value
@@ -42,7 +38,6 @@ fn value_maker() -> Vec<u8> {
         init: true,
         command: "iroha --submit-genesis".to_string(),
     };
-    let value = serde_yaml::to_value(&entry).unwrap(); // type of Value
 
     let serialized = serde_yaml::to_string(&entry)
         .unwrap()
