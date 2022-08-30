@@ -1,4 +1,7 @@
 use std::collections::HashMap;
+use serde::*;
+use std::fmt::{Display, Formatter};
+use serde::ser::{Serialize, Serializer, SerializeMap};
 
 fn main() {
     let mut setings = HashMap::new();
@@ -13,5 +16,5 @@ fn main() {
 }
 
 fn value_maker(i: usize) -> String {
-    i.to_string()
+    serde_yaml::to_string(&i).unwrap()
 }
