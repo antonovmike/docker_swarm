@@ -9,6 +9,8 @@ fn main() {
     for i in 0..4 {
         let iroha_iter = format!("iroha{}", i.to_string());
         
+        // torii(&iroha_iter);
+
         let value: Vec<u8> = value_maker();
         let serde_content = value
             .into_iter()
@@ -22,6 +24,12 @@ fn main() {
         println!("{}: \n{}", key, value);
     }
 }
+
+// fn torii(iroha_iter: &String) {
+//     TORII_P2P_ADDR: iroha0:1337
+//     TORII_API_URL: iroha0:8080
+//     TORII_TELEMETRY_URL: iroha0:8180
+// }
 
 fn value_maker() -> Vec<u8> {
     let entry = IrohaIterated {
