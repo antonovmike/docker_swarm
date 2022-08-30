@@ -2,9 +2,6 @@ use serde_yaml::Value;
 
 use crate::structures::IrohaIterated;
 use std::collections::HashMap;
-// use serde::*;
-// use std::fmt::{Display, Formatter};
-// use serde::ser::{Serialize, Serializer, SerializeMap};
 
 mod structures;
 
@@ -14,9 +11,7 @@ fn main() {
 
     for i in 0..4 {
         let iroha_iter = format!("iroha{}", i.to_string());
-        // setings.insert(iroha_iter, value_maker(i));
         let value: serde_yaml::Value = serde_yaml::from_value(value_maker()).unwrap();
-        // str(value_maker())?
         setings.insert(iroha_iter, value);
     }
     for (key, value) in &setings {
