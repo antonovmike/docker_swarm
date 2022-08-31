@@ -1,4 +1,4 @@
-use crate::structures::IrohaIterated;
+use crate::structures::{IrohaIterated, Environment};
 use std::collections::HashMap;
 
 mod structures;
@@ -8,8 +8,8 @@ fn main() {
 
     for i in 0..4 {
         let iroha_iter = format!("iroha{}", i.to_string());
-        
-        let value: Vec<u8> = value_maker();
+
+        let value: Vec<u8> = value_maker(&iroha_iter);
         let serde_content = value
             .into_iter()
             .take_while(|&x| x != 0)
@@ -23,14 +23,26 @@ fn main() {
     }
 }
 
-fn value_maker() -> Vec<u8> {
+fn environment_data(iroha_iter: &String) -> Environment {
+    let envir = Environment {
+        TORII_P2P_ADDR: format!("{}:1337", iroha_iter),
+        TORII_API_URL: format!("{}:8080", iroha_iter),
+        TORII_TELEMETRY_URL: format!("{}:8180", iroha_iter),
+        IROHA_PUBLIC_KEY: "EMPTY".to_string(),
+        IROHA_PRIVATE_KEY: "EMPTY".to_string(),
+        SUMERAGI_TRUSTED_PEERS: "EMPTY".to_string(),
+    };
+    envir
+}
+
+fn value_maker(iroha_iter: &String) -> Vec<u8> {
     let entry = IrohaIterated {
         build: '.',
         image: "iroha2:dev".to_string(),
         volumes: "
         - './configs/peer:/config'
         - './:/root/soramitsu/iroha'".to_string(),
-        // environment: Environment,
+        environment: environment_data(&iroha_iter),
         ports: "
         - \"1337:1337\"
         - \"8080:8080\"
