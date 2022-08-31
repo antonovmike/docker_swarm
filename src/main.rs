@@ -28,12 +28,14 @@ fn environment_data(iroha_iter: &String) -> Environment {
         TORII_P2P_ADDR: format!("{}:1337", iroha_iter),
         TORII_API_URL: format!("{}:8080", iroha_iter),
         TORII_TELEMETRY_URL: format!("{}:8180", iroha_iter),
-        IROHA_PUBLIC_KEY: "EMPTY".to_string(),
-        IROHA_PRIVATE_KEY: "EMPTY".to_string(),
-        SUMERAGI_TRUSTED_PEERS: "EMPTY".to_string(),
+        IROHA_PUBLIC_KEY: dummy(),
+        IROHA_PRIVATE_KEY: dummy(),
+        SUMERAGI_TRUSTED_PEERS: dummy(),
     };
     envir
 }
+
+fn dummy() -> String { "EMPTY".to_string() }
 
 fn value_maker(iroha_iter: &String) -> Vec<u8> {
     let entry = IrohaIterated {
