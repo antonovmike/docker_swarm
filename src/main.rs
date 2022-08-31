@@ -4,6 +4,12 @@ use std::collections::HashMap;
 mod structures;
 
 fn main() {
+    let file = std::fs::OpenOptions::new()
+        .write(true)
+        .create(true)
+        .open("config.yml")
+        .expect("Couldn't open file");
+
     let mut setings = HashMap::new();
 
     for i in 0..4 {
@@ -21,6 +27,8 @@ fn main() {
     for (key, value) in &setings {
         println!("{}: \n{}", key, value);
     }
+
+    serde_yaml::to_writer(file, &setings).unwrap();
 }
 
 fn environment_data(iroha_iter: &String) -> Environment {
