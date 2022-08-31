@@ -1,4 +1,4 @@
-use crate::structures::IrohaIterated;
+use crate::structures::{IrohaIterated, Environment};
 use std::collections::HashMap;
 
 mod structures;
@@ -9,7 +9,8 @@ fn main() {
     for i in 0..4 {
         let iroha_iter = format!("iroha{}", i.to_string());
         
-        // torii(&iroha_iter);
+        // environment_data(&iroha_iter);
+        println!("PRINT: {:?}", environment_data(&iroha_iter));
 
         let value: Vec<u8> = value_maker();
         let serde_content = value
@@ -25,11 +26,14 @@ fn main() {
     }
 }
 
-// fn torii(iroha_iter: &String) {
-//     TORII_P2P_ADDR: iroha0:1337
-//     TORII_API_URL: iroha0:8080
-//     TORII_TELEMETRY_URL: iroha0:8180
-// }
+fn environment_data(iroha_iter: &String) -> Environment {
+    let envir = Environment {
+        TORII_P2P_ADDR: format!("{}:1337", iroha_iter),
+        TORII_API_URL: format!("{}:8080", iroha_iter),
+        TORII_TELEMETRY_URL: format!("{}:8180", iroha_iter),
+    };
+    envir
+}
 
 fn value_maker() -> Vec<u8> {
     let entry = IrohaIterated {

@@ -11,7 +11,9 @@ pub struct IrohaIterated {
     pub command: String,
 }
 
-// #[derive(Debug, Serialize, Deserialize)]
-// pub struct Environment {
-//     empty_field: String,
-// }
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Environment {
+    pub TORII_P2P_ADDR: String,
+    pub TORII_API_URL: String,
+    pub TORII_TELEMETRY_URL: String,
+}
