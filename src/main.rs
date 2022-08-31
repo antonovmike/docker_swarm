@@ -33,11 +33,11 @@ fn main() {
 
 fn environment_data(iroha_iter: &String) -> Environment {
     let envir = Environment {
-        TORII_P2P_ADDR: format!("{}:1337", iroha_iter),
-        TORII_API_URL: format!("{}:8080", iroha_iter),
+        TORII_P2P_ADDR:      format!("{}:1337", iroha_iter),
+        TORII_API_URL:       format!("{}:8080", iroha_iter),
         TORII_TELEMETRY_URL: format!("{}:8180", iroha_iter),
-        IROHA_PUBLIC_KEY: dummy(),
-        IROHA_PRIVATE_KEY: dummy(),
+        IROHA_PUBLIC_KEY:       dummy(),
+        IROHA_PRIVATE_KEY:      dummy(),
         SUMERAGI_TRUSTED_PEERS: dummy(),
     };
     envir
@@ -46,7 +46,7 @@ fn environment_data(iroha_iter: &String) -> Environment {
 fn dummy() -> String { "EMPTY".to_string() }
 
 fn value_maker(iroha_iter: &String) -> Vec<u8> {
-    let entry = IrohaIterated {
+    let irohaiter = IrohaIterated {
         build: '.',
         image: "iroha2:dev".to_string(),
         volumes: "
@@ -61,7 +61,7 @@ fn value_maker(iroha_iter: &String) -> Vec<u8> {
         command: "iroha --submit-genesis".to_string(),
     };
 
-    let serialized = serde_yaml::to_string(&entry)
+    let serialized = serde_yaml::to_string(&irohaiter)
         .unwrap()
         .clone()
         .into_bytes();
