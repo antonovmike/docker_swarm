@@ -10,7 +10,7 @@ pub struct IrohaIterated {
     pub init: bool,
     pub command: String,
 }
-
+#[allow(non_snake_case)]
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Environment {
     pub TORII_P2P_ADDR: String,
