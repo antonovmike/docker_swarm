@@ -5,7 +5,7 @@ pub struct IrohaIterated {
     pub build: char,
     pub image: String,
     pub volumes: String,
-    // pub environment: Environment,
+    pub environment: Environment,
     pub ports: String,
     pub init: bool,
     pub command: String,

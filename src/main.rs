@@ -10,9 +10,9 @@ fn main() {
         let iroha_iter = format!("iroha{}", i.to_string());
         
         // environment_data(&iroha_iter);
-        println!("PRINT: {:?}", environment_data(&iroha_iter));
+        // println!("PRINT: {:?}", environment_data(&iroha_iter));
 
-        let value: Vec<u8> = value_maker();
+        let value: Vec<u8> = value_maker(&iroha_iter);
         let serde_content = value
             .into_iter()
             .take_while(|&x| x != 0)
@@ -35,14 +35,14 @@ fn environment_data(iroha_iter: &String) -> Environment {
     envir
 }
 
-fn value_maker() -> Vec<u8> {
+fn value_maker(iroha_iter: &String) -> Vec<u8> {
     let entry = IrohaIterated {
         build: '.',
         image: "iroha2:dev".to_string(),
         volumes: "
         - './configs/peer:/config'
         - './:/root/soramitsu/iroha'".to_string(),
-        // environment: Environment,
+        environment: environment_data(&iroha_iter),
         ports: "
         - \"1337:1337\"
         - \"8080:8080\"
