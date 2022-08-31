@@ -8,9 +8,6 @@ fn main() {
 
     for i in 0..4 {
         let iroha_iter = format!("iroha{}", i.to_string());
-        
-        // environment_data(&iroha_iter);
-        // println!("PRINT: {:?}", environment_data(&iroha_iter));
 
         let value: Vec<u8> = value_maker(&iroha_iter);
         let serde_content = value
