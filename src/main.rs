@@ -49,14 +49,9 @@ fn value_maker(iroha_iter: &String) -> Vec<u8> {
     let irohaiter = IrohaIterated {
         build: '.',
         image: "iroha2:dev".to_string(),
-        volumes: "
-        - './configs/peer:/config'
-        - './:/root/soramitsu/iroha'".to_string(),
+        volumes: "- './configs/peer:/config'\n- './:/root/soramitsu/iroha'".to_string(),
         environment: environment_data(&iroha_iter),
-        ports: "
-        - \"1337:1337\"
-        - \"8080:8080\"
-        - \"8180:8180\"".to_string(),
+        ports: "- \"1337:1337\"\n- \"8080:8080\"\n- \"8180:8180\"".to_string(),
         init: true,
         command: "iroha --submit-genesis".to_string(),
     };
