@@ -13,8 +13,6 @@ fn main() {
     let mut setings = HashMap::new();
 
     for iroha_iter in 0..4 {
-        // let iroha_iter = format!("iroha{}", i.to_string());
-
         let value: Vec<u8> = serializer(iroha_iter);
         let serde_content = value
             .into_iter()
