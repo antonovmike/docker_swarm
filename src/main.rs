@@ -15,7 +15,7 @@ fn main() {
     for iroha_iter in 0..4 {
         // let iroha_iter = format!("iroha{}", i.to_string());
 
-        let value: Vec<u8> = value_maker(iroha_iter);
+        let value: Vec<u8> = serializer(iroha_iter);
         let serde_content = value
             .into_iter()
             .take_while(|&x| x != 0)
@@ -45,7 +45,7 @@ fn environment_data(iroha_iter: usize) -> Environment {
 
 fn dummy() -> String { "EMPTY".to_string() }
 
-fn value_maker(iroha_iter: usize) -> Vec<u8> {
+fn serializer(iroha_iter: usize) -> Vec<u8> {
     let irohaiter = IrohaIterated {
         build: '.',
         image: "iroha2:dev".to_string(),
