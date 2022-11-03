@@ -12,15 +12,15 @@ fn main() {
 
     let mut setings = HashMap::new();
 
-    for iroha_iter in 0..4 {
-        let value: Vec<u8> = serializer(iroha_iter);
+    for i in 0..4 {
+        let value: Vec<u8> = serializer(i);
         let serde_content = value
             .into_iter()
             .take_while(|&x| x != 0)
             .collect::<Vec<_>>();
         let serde_data = String::from_utf8(serde_content).expect("Invalid utf8 message");
 
-        setings.insert(iroha_iter, serde_data);
+        setings.insert(i, serde_data);
     }
     for (key, value) in &setings {
         println!("{}: \n{}", key, value);
