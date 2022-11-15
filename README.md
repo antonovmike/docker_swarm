@@ -1,4 +1,4 @@
-# serde_example
+# docker_swarm
 
 The algorythm creates "config.yml" file
 
