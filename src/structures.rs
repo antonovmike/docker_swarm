@@ -10,6 +10,10 @@ pub struct IrohaIterated {
     pub init: bool,
     pub command: String,
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> test
 #[allow(non_snake_case)]
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Environment {
