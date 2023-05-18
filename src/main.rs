@@ -1,9 +1,10 @@
 use crate::structures::{IrohaIterated, Environment};
 use std::collections::HashMap;
+use serde_yaml::Error;
 
 mod structures;
 
-fn main() {
+fn main() -> Result<(), Error> {
     let file = std::fs::OpenOptions::new()
         .write(true)
         .create(true)
@@ -15,7 +16,7 @@ fn main() {
     for i in 0..4 {
         let iroha_iter = format!("iroha{}", i.to_string());
 
-        let value: Vec<u8> = value_maker(&iroha_iter);
+        let value: Vec<u8> = value_maker(&iroha_iter)?;
         let serde_content = value
             .into_iter()
             .take_while(|&x| x != 0)
@@ -28,7 +29,9 @@ fn main() {
         println!("{}: \n{}", key, value);
     }
 
-    serde_yaml::to_writer(file, &setings).unwrap();
+    serde_yaml::to_writer(file, &setings)?;
+
+    Ok(())
 }
 
 fn environment_data(iroha_iter: &String) -> Environment {
@@ -45,7 +48,7 @@ fn environment_data(iroha_iter: &String) -> Environment {
 
 fn dummy() -> String { "EMPTY".to_string() }
 
-fn value_maker(iroha_iter: &String) -> Vec<u8> {
+fn value_maker(iroha_iter: &String) -> Result<Vec<u8>, Error> {
     let irohaiter = IrohaIterated {
         build: '.',
         image: "iroha2:dev".to_string(),
@@ -56,10 +59,9 @@ fn value_maker(iroha_iter: &String) -> Vec<u8> {
         command: "iroha --submit-genesis".to_string(),
     };
 
-    let serialized = serde_yaml::to_string(&irohaiter)
-        .unwrap()
+    let serialized = serde_yaml::to_string(&irohaiter)?
         .clone()
         .into_bytes();
 
-    serialized
+    Ok(serialized)
 }
