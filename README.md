@@ -43,3 +43,13 @@ Tag = latest
 docker build --tag test_1:1.0 .
 ```
 Tag = 1.0
+
+Remove image created with no tag
+```bash
+docker rmi test_1
+```
+or with tag
+```bash
+docker rmi test_1:1.0
+```
+or by image's id
