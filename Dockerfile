@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-CMD ["rust", "src/main.rs"]
+RUN cargo build --release
 
-# RUN ["./docker_swarm"]
+ENTRYPOINT ["target/release/docker_swarm"]
