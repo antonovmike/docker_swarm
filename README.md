@@ -9,7 +9,7 @@ STEP 1
 Choose the image and run it
 ```bash
 sudo docker image ls
-sudo docker run -it --rm IMAGE_NAME /bin/sh
+sudo docker run -it IMAGE_NAME sh
 ```
 
 Or download and run:
