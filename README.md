@@ -32,3 +32,14 @@ cd docker_swarm
 cargo run
 ```
 
+Build:
+```bash
+docker build --tag test_1 .
+docker images
+```
+"." - Docker image should be built from a Dockerfile
+Tag = latest
+```bash
+docker build --tag test_1:1.0 .
+```
+Tag = 1.0
