@@ -37,6 +37,11 @@ Build:
 docker build --tag test_1 .
 docker images
 ```
+Run
+```bash
+docker run test_1
+```
+
 "." - Docker image should be built from a Dockerfile
 Tag = latest
 ```bash
